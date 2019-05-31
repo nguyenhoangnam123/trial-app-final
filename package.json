@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
-    "start": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development --inline --hot",
     "build": "webpack --mode production"
   },
-  "author": "",
+  "author": "namnh <namnh@bravebits.vn>",
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^3.9.2",
@@ -17,19 +17,25 @@
     "@material/layout-grid": "^0.41.0",
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
+    "@types/react-router-dom": "^4.3.3",
     "@types/uuid": "^3.4.4",
     "immutable": "^4.0.0-rc.12",
     "react": "^16.8.4",
     "react-dnd": "^7.3.2",
     "react-dnd-html5-backend": "^7.2.0",
     "react-dom": "^16.8.4",
+    "react-router-dom": "^5.0.0",
+    "styled-components": "^4.2.0",
     "tslint": "^5.14.0",
     "tslint-react": "^3.6.0",
+    "unstated": "^2.1.1",
+    "unstated-x": "^0.1.1",
     "uuid": "^3.3.2",
     "webpack": "^4.29.6",
     "webpack-dev-server": "^3.2.1"
   },
   "devDependencies": {
+    "@types/styled-components": "^4.1.15",
     "awesome-typescript-loader": "^5.2.1",
     "copy-webpack-plugin": "^5.0.1",
     "css-loader": "^2.1.1",
@@ -41,5 +47,6 @@
     "style-loader": "^0.23.1",
     "typescript": "^3.3.3333",
     "webpack-cli": "^3.2.3"
-  }
+  },
+  "repository": "https://github.com/chriskitson/react-drag-drop-layout-builder.git"
 }

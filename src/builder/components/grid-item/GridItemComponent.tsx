@@ -1,16 +1,20 @@
-import * as React from 'react';
+import * as React from "react";
+import { IGridItemComponent } from "../../interfaces";
 
 export function getMatGridSizeClass(size: number): string {
   return `mdc-layout-grid__cell mdc-layout-grid__cell--span-${size}`;
 }
 
-export interface IGridItemComponent {
-  size: number;
-  children: React.ReactNode;
-  cssClass?: string;
-}
-
-export const GridItemComponent = ({ size, children, cssClass = '' }: IGridItemComponent) =>
-  <div className={`${getMatGridSizeClass(size)}${cssClass !== '' ? ` ${cssClass}` : ''}`}>
+export const GridItemComponent = ({
+  size,
+  children,
+  cssClass = ""
+}: IGridItemComponent) => (
+  <div
+    className={`${getMatGridSizeClass(size)}${
+      cssClass !== "" ? ` ${cssClass}` : ""
+    }`}
+  >
     {children}
-  </div>;
+  </div>
+);

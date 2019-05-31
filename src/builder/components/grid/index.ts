@@ -1,3 +1,3 @@
-import { GridComponent, IGridComponent } from './GridComponent';
+import { GridComponent } from "./GridComponent";
 
-export { GridComponent, IGridComponent };
+export { GridComponent };

@@ -1,3 +1,6 @@
 node_modules
 .DS_Store
 dist
+src/buider/interface
+src/builder/BuilderLayout.tsx
+src/buider/draggable-components.tsx

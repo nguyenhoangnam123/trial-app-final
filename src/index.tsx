@@ -1,10 +1,25 @@
-import * as React from 'react';
-import { render } from 'react-dom';
+import * as React from "react";
+import { render } from "react-dom";
+import { Provider, Subscribe } from "unstated-x";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import ContentContainer from "./builder/containers/ContentContainer";
+import "@material/layout-grid/mdc-layout-grid.scss";
+import { BuilderLayout, Preview, LayoutBuilder } from "./builder";
 
-import '@material/layout-grid/mdc-layout-grid.scss';
-import { BuilderLayout } from './builder';
-
-render (
-    <BuilderLayout />,
-    document.getElementById('root'),
+render(
+  <Provider>
+    <Router>
+      <Subscribe to={[ContentContainer]}>
+        {() => {
+          return (
+            <>
+              <Route path="/" exact component={LayoutBuilder} />
+              <Route path="/preview" exact component={Preview} />
+            </>
+          );
+        }}
+      </Subscribe>
+    </Router>
+  </Provider>,
+  document.getElementById("root")
 );

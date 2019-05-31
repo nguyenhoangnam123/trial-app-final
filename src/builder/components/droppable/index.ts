@@ -1,6 +1,3 @@
-import { DroppableComponent, IDroppableComponent } from './DroppableComponent';
+import { DroppableComponent } from "./DroppableComponent";
 
-export {
-  DroppableComponent,
-  IDroppableComponent
-};
+export { DroppableComponent };

@@ -1,21 +1,19 @@
-import { ContentComponent, IContentComponent } from './content';
-import { ContentBuilderComponent, IContentBuilderComponent } from './content-builder';
-import { DraggableComponent, IDraggableComponent } from './draggable';
-import { DroppableComponent, IDroppableComponent } from './droppable';
-import { GridComponent, IGridComponent } from './grid';
-import { GridItemComponent, IGridItemComponent } from './grid-item';
+import { LayoutComponent, ILayoutComponent } from "./layout";
+import { ContentComponent, IContentComponent } from "./content";
+import { ContentBuilderComponent } from "./content-builder";
+import { DraggableComponent } from "./draggable";
+import { DroppableComponent } from "./droppable";
+import { GridComponent } from "./grid";
+import { GridItemComponent } from "./grid-item";
 
 export {
+  LayoutComponent,
+  ILayoutComponent,
   DraggableComponent,
-  IDraggableComponent,
   DroppableComponent,
-  IDroppableComponent,
   ContentBuilderComponent,
-  IContentBuilderComponent,
   ContentComponent,
   IContentComponent,
   GridComponent,
-  IGridComponent,
-  GridItemComponent,
-  IGridItemComponent
+  GridItemComponent
 };

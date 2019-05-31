@@ -1,20 +1,29 @@
-
-import { IComponent, IComponentType } from './interfaces';
+import { IComponent, IComponentType } from "./interfaces";
 
 export const DraggableComponents: IComponent[] = [
   {
     children: [],
-    name: 'Card',
-    type: IComponentType.CARD
-  },
-  {
-    children: [],
-    name: 'Grid',
+    name: "Grid",
     type: IComponentType.GRID
   },
   {
     children: [],
-    name: 'Heading',
+    name: "Image",
+    type: IComponentType.IMAGE
+  },
+  {
+    children: [],
+    name: "Button",
+    type: IComponentType.BUTTON
+  },
+  {
+    children: [],
+    name: "Card",
+    type: IComponentType.CARD
+  },
+  {
+    children: [],
+    name: "Heading",
     type: IComponentType.HEADING
   }
 ];

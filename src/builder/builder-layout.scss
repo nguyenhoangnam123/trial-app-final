@@ -1,5 +1,5 @@
 $palette: (
-  grey:     #EFEFEF
+  grey: #efefef
 );
 
 body {
@@ -8,7 +8,7 @@ body {
 
 .builder {
   &-draggables {
-    height: 110px;
+    height: 100vh;
     background: map-get($palette, grey);
     clear: both;
     padding: 5px;
