@@ -4,7 +4,7 @@ import { Provider, Subscribe } from "unstated-x";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ContentContainer from "./builder/containers/ContentContainer";
 import "@material/layout-grid/mdc-layout-grid.scss";
-import { BuilderLayout, Preview, LayoutBuilder } from "./builder";
+import { Preview, LayoutBuilder } from "./builder";
 
 render(
   <Provider>

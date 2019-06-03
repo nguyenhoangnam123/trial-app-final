@@ -1,72 +1,16 @@
 import * as React from "react";
-import { v4 as uuid } from "uuid";
+import { TYPE_MAP } from "./MapComponent";
+import { IElement, ILayoutBuilderState } from "./interfaces";
+import { InitApplicationState, initItems } from "./InitApplicationState";
 
-const TYPE_MAP: any = {
-  Body: (props: any) => <div className="container">{props.children}</div>,
-  Section: (props: any) => <section className="main">{props.children}</section>,
-  Grid: (props: any) => (
-    <div className="mdc-layout-grid">
-      <div className="mdc-layout-grid__inner">{props.children}</div>
-    </div>
-  ),
-  Column: (props: any) => {
-    const { onDrop, onDragOver, id } = props;
-    const className = `mdc-layout-grid__cell mdc-layout-grid__cell--span-${
-      props.size
-    }`;
-    return (
-      <div
-        className={className}
-        onDrop={onDrop}
-        onDragOver={onDragOver}
-        data-id={id}
-      >
-        {props.children}
-      </div>
-    );
-  },
-
-  Button: (props: any) => {
-    const { onDragStart, id, type } = props;
-    return (
-      <button
-        onDragStart={e => onDragStart(e, id, type)}
-        draggable={true}
-        id={id}
-        type={type}
-      >
-        {props.children}
-      </button>
-    );
-  }
-};
-
-export interface ILayoutBuilderState {
-  items: IElement[];
-}
-
-export interface IElement {
-  id: string;
-  type: string;
-  childrens: string[];
-  size?: number;
-}
+const types = ["Row", "Column", "Button"];
 
 export class LayoutBuilder extends React.Component {
   state: ILayoutBuilderState = {
-    items: [
-      { id: "0", type: "Body", childrens: ["1"] },
-      { id: "1", type: "Section", childrens: ["2"] },
-      { id: "2", type: "Grid", childrens: ["3", "4", "5"] },
-      { id: "3", type: "Column", childrens: ["6"], size: 3 },
-      { id: "4", type: "Column", childrens: [], size: 3 },
-      { id: "5", type: "Column", childrens: [], size: 3 },
-      { id: "6", type: "Button", childrens: [] }
-    ]
+    items: InitApplicationState(initItems, types)
   };
 
   renderElement = (id: string) => {
-    console.log(this.state.items);
     const item: any = this.state.items.find(item => item.id === id);
     if (item) {
       const { type, childrens, size } = item;
@@ -95,7 +39,7 @@ export class LayoutBuilder extends React.Component {
   };
 
   render() {
-    return <div>{this.renderElement("0")}</div>;
+    return <>{this.renderElement("0")}</>;
   }
 
   handleClick = () => {};
@@ -104,33 +48,32 @@ export class LayoutBuilder extends React.Component {
     id: string,
     type: string
   ) => {
-    const idArray = this.state.items.map((item: IElement) => item.id);
-    // check if component exist
-    // if (idArray.indexOf(id)) {
-    //   // generate random id
-    //   const newId = uuid();
-    //   e.dataTransfer.setData("id", newId);
-    //   e.dataTransfer.setData("type", type);
-    // }
-    console.log(type);
+    e.stopPropagation();
+    console.log(id);
     e.dataTransfer.setData("id", id);
     e.dataTransfer.setData("type", type);
   };
 
   handleOnDragOver = (e: React.DragEvent) => {
     e.preventDefault();
-    console.log("drag over");
   };
 
   handleOnDragDrop = (e: React.DragEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     const items = this.state.items;
+    // get father container id
     const containerId = e.currentTarget.getAttribute("data-id");
 
+    // get child id and type
     const childId = e.dataTransfer.getData("id");
+    const childType = e.dataTransfer.getData("type");
 
+    // update position of component when drop
     const newPosition = this.updatePosition(containerId, items, childId);
 
+    // update drag zone
+    InitApplicationState(newPosition, types);
     this.setState({ items: newPosition });
   };
 
@@ -139,7 +82,7 @@ export class LayoutBuilder extends React.Component {
     items: IElement[],
     childId: string
   ) => {
-    return items.map(item => {
+    items.map(item => {
       if (item.childrens.indexOf(childId) !== -1) {
         const updatedChildren = item.childrens.filter(
           (id: string) => id !== childId
@@ -149,7 +92,16 @@ export class LayoutBuilder extends React.Component {
       if (item.id === containerId) {
         item.childrens.push(childId);
       }
-      console.log("updated item: ", item);
     });
+    console.log(items);
+    return items;
+  };
+
+  removeDragClass = () => {
+    const elements = document.getElementsByClassName("drag-item");
+    let i = 0;
+    for (i; i < elements.length; i++) {
+      elements[i].classList.remove("drag-item");
+    }
   };
 }

@@ -15,6 +15,8 @@ import {
   IContentBuilderGridComponent
 } from "./IContent";
 
+import { IElement, ILayoutBuilderState } from "./IApplication";
+
 export {
   IComponent,
   IDraggableComponent,
@@ -26,5 +28,7 @@ export {
   IGridItemComponent,
   IContentBuilderComponent,
   IContentBuilderDraggableComponent,
-  IContentBuilderGridComponent
+  IContentBuilderGridComponent,
+  IElement,
+  ILayoutBuilderState
 };
